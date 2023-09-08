@@ -1,45 +1,18 @@
 package com.eam.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
-@Entity
-public class Proveedor extends Persona{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idProveedor;
+import java.util.ArrayList;
 
-	public Proveedor(long idProveedor) {
-		super();
-		this.idProveedor = idProveedor;
-	}
-
-	/**
-	 * @param nombre
-	 * @param apellido
-	 * @param edad
-	 * @param cedula
-	 * @param idProveedor
-	 */
-	public Proveedor(String nombre, String apellido, int edad, String cedula, long idProveedor) {
-		super(nombre, apellido, edad, cedula);
-		this.idProveedor = idProveedor;
-	}
-
-	/**
-	 * @return the idProveedor
-	 */
-	public long getIdProveedor() {
-		return idProveedor;
-	}
-
-	/**
-	 * @param idProveedor the idProveedor to set
-	 */
-	public void setIdProveedor(long idProveedor) {
-		this.idProveedor = idProveedor;
-	}
-	
+@Data
+@Entity(name = "proveedores")
+public class Proveedor extends Persona {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "proveedor_id")
+    private long idProveedor;
+    @OneToMany
+    @JoinColumn(name = "productos")
+    private ArrayList<Producto> productos;
 }

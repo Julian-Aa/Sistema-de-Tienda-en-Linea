@@ -1,26 +1,20 @@
 package com.eam.models;
 
-import java.util.ArrayList;
+import jakarta.persistence.*;
+import lombok.Data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+@Data
+@Entity(name = "carritodecompras")
+public class CarritoDeCompra {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "car_id")
+    private long carrito_id;
+    @OneToOne()
+    @JoinColumn(name = "user_id")
+    private Usuario usuario;
 
-@Entity
-public class CarritoDeCompra{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	ArrayList<Producto> productos = new ArrayList<>();
 
-	public CarritoDeCompra() {
-		super();
-	}
-
-	public CarritoDeCompra(ArrayList<Producto> productos) {
-		this.productos = productos;
-	}
 /*	public boolean anadirProducto(Producto producto) {
 		boolean anadido = false;
 		if(!productos.isEmpty()) {
