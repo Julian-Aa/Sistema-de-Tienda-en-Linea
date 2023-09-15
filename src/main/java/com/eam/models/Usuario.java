@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "usuarios")
-public class Usuario extends Persona {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -27,8 +27,8 @@ public class Usuario extends Persona {
     private String tipo;
     @Column(name = "user_password")
     private String password;
-    @OneToMany(mappedBy = "usuario")
-    private List<Producto> productos;
+    /*@OneToMany(mappedBy = "usuario")
+    private List<Producto> productos;*/
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
 
@@ -40,6 +40,15 @@ public class Usuario extends Persona {
         this.direccion = direccion;
         this.telefono = telefono;
         this.tipo = tipo;
+        this.password = password;
+    }
+
+    public Usuario() {
+    }
+
+    public Usuario(String userName, String email, String password){
+        this.userName = userName;
+        this.email = email;
         this.password = password;
     }
 }

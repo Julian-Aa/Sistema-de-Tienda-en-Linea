@@ -1,34 +1,44 @@
 package com.eam.controller;
 
 import com.eam.models.Producto;
-import com.eam.models.Usuario;
 import com.eam.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/api/productos")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
-    @GetMapping("")
-    public void show(Model model){
-    model.addAttribute("productos",productoService.findAll())
+    @GetMapping
+    public ResponseEntity<List<Producto>> show(){
+    return ResponseEntity.ok(productoService.findAll());
     }
-    @GetMapping("/create")
-    public String create(){
-        return null;
+    @GetMapping("/{id}")
+    public ResponseEntity<Producto> getById(@PathVariable Long id) {
+        Producto producto = productoService.findById(id);
+        if (producto != null) {
+            return ResponseEntity.ok(producto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
-    @PostMapping("/save")
-    public String save(Producto producto) {
-        productoService.save(producto);
-        Usuario u = new Usuario(1,"","","","","","","");
-        producto.setUsuario(u);
-        return "redirect:/productos";
+    @PostMapping
+    public ResponseEntity<Producto> create(@RequestBody Producto producto) {
+        return ResponseEntity.ok(productoService.save(producto));
+    }
+    @PutMapping("/{id}")
+    public Producto update(@PathVariable Long id,@RequestBody Producto producto){
+        producto.setProductoId(id);
+        return productoService.save(producto);
+    }
+    @DeleteMapping("/{productoId}")
+    public ResponseEntity<String> delete(@PathVariable Long productoId){
+        productoService.deleteById(productoId);
+        return ResponseEntity.noContent().build();
     }
 }

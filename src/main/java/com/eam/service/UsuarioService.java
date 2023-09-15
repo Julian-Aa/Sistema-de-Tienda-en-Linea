@@ -7,24 +7,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
-public class ProductoService {
+public class UsuarioService {
     @Autowired
     private ProductoRepository productoRepository;
 
-    public List<Producto> findAll() {
+    public List<Producto> obtenerTodos() {
         return productoRepository.findAll();
     }
 
-    public Producto findById(Long id) {
+    public Producto obtenerPorId(Long id) {
         return productoRepository.findById(id).orElse(null);
     }
 
-    public Producto save(Producto producto) {
+    public Producto guardar(Producto producto) {
         return productoRepository.save(producto);
     }
 
-    public void deleteById(Long id) {
+    public void eliminar(Long id) {
         productoRepository.deleteById(id);
     }
 }

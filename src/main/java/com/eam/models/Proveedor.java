@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 @Data
 @Entity(name = "proveedores")
-public class Proveedor extends Persona {
+public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "proveedor_id")
     private long idProveedor;
-    @OneToMany
+   /* @OneToMany
     @JoinColumn(name = "productos")
-    private ArrayList<Producto> productos;
+    private ArrayList<Producto> productos;*/
 }

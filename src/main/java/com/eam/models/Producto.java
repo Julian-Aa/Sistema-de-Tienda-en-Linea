@@ -1,8 +1,5 @@
 package com.eam.models;
 
-import javax.swing.*;
-
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,7 +7,7 @@ import lombok.Data;
 @Entity
 @Table(name = "productos")
 public class Producto {
-    @Id
+    @Id     
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private long productoId;
@@ -23,13 +20,13 @@ public class Producto {
     @Column(name = "product_cant")
     private int cantidad;
     @Column(name = "product_img")
-    private ImageIcon imagen;
-    @ManyToOne
-    @JoinColumn(name = "cate_id", nullable = false)
+    private String imagenUrl;
+    /*@ManyToOne
+    @JoinColumn(name = "cate_id")
     private Categoria categoria;
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
     @JoinColumn(name = "prove_id")
-    private Proveedor proveedor;
+    private Proveedor proveedor;*/
 }

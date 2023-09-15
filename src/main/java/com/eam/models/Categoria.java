@@ -15,7 +15,7 @@ public class Categoria {
     private long categoriaId;
     @Column(name = "cat_nombre")
     private String nombre;
-    @OneToMany(mappedBy = "categoria")
-    private ArrayList<Producto> productos;
+   /* @OneToMany(mappedBy = "categoria")
+    private ArrayList<Producto> productos;*/
 
 }
