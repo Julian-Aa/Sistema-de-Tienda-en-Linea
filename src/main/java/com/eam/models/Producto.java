@@ -12,21 +12,36 @@ public class Producto {
     @Column(name = "product_id")
     private long productoId;
     @Column(name = "product_name")
-    private String nombre;
-    @Column(name = "product_precio")
-    private String precio;
-    @Column(name = "product_descri")
-    private String descripcion;
-    @Column(name = "product_cant")
-    private int cantidad;
-    @Column(name = "product_img")
-    private String imagenUrl;
-    /*@ManyToOne
-    @JoinColumn(name = "cate_id")
-    private Categoria categoria;
+    private String name;
+    @Column(name = "product_description")
+    private String description;
+    @Column(name = "product_price")
+    private double price;
+    @Column(name = "product_quantity")
+    private int quantity;
+    @Column(name = "product_image")
+    private String image;
     @ManyToOne
-    private Usuario usuario;
+    @JoinColumn(name = "cate_id")
+    private Categoria category;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User usuario;
     @ManyToOne
     @JoinColumn(name = "prove_id")
-    private Proveedor proveedor;*/
+    private Proveedor proveedor;
+    public Producto() {
+    }
+
+    public Producto(long productoId, String name, String description, double price, int quantity, String image, Categoria category, User usuario, Proveedor proveedor) {
+        this.productoId = productoId;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+        this.category = category;
+        this.usuario = usuario;
+        this.proveedor = proveedor;
+    }
 }

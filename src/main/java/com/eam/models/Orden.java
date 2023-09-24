@@ -22,7 +22,7 @@ public class Orden {
     @Column(name = "orden_total")
     private double total;
     @ManyToOne
-    private Usuario usuario;
+    private User usuario;
     @OneToOne
     private DetalleOrden detalleOrden;
 }

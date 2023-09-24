@@ -12,7 +12,7 @@ public class CarritoDeCompra {
     private long carrito_id;
     @OneToOne()
     @JoinColumn(name = "user_id")
-    private Usuario usuario;
+    private User usuario;
 
 
 /*	public boolean anadirProducto(Producto producto) {

@@ -8,47 +8,45 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Integer id;
+    private Long id;
     @Column(name = "user_name")
-    private String nombre;
+    private String name;
     @Column(name = "user_userName")
     private String userName;
     @Column(name = "user_email")
     private String email;
     @Column(name = "user_direccion")
-    private String direccion;
+    private String address;
     @Column(name = "user_tel")
-    private String telefono;
+    private String phone;
     @Column(name = "user_tipo")
-    private String tipo;
+    private String type;
     @Column(name = "user_password")
     private String password;
-    /*@OneToMany(mappedBy = "usuario")
-    private List<Producto> productos;*/
     @OneToMany(mappedBy = "usuario")
-    private List<Orden> ordenes;
+    private List<Orden> checks;
+    public User() {
+    }
 
-    public Usuario(Integer id, String nombre, String userName, String email, String direccion, String telefono, String tipo, String password) {
+    public User(String userName, String email, String password){
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(Long id, String name, String userName, String email, String address, String phone, String type, String password, List<Orden> checks) {
         this.id = id;
-        this.nombre = nombre;
+        this.name = name;
         this.userName = userName;
         this.email = email;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.tipo = tipo;
+        this.address = address;
+        this.phone = phone;
+        this.type = type;
         this.password = password;
-    }
-
-    public Usuario() {
-    }
-
-    public Usuario(String userName, String email, String password){
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
+        this.checks = checks;
     }
 }

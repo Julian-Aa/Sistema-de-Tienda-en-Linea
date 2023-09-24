@@ -14,7 +14,7 @@ public class Carrito {
     private long carritoId;
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Usuario userId;
+    private User userId;
     private Date fecha;
 
 }
