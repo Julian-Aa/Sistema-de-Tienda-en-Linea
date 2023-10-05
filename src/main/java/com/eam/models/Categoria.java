@@ -12,6 +12,4 @@ public class Categoria {
     private long categoryId;
     @Column(name = "cat_name")
     private String name;
-
-
 }
