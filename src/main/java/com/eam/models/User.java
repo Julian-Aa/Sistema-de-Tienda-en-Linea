@@ -16,15 +16,15 @@ public class User {
     @Column(name = "user_name")
     private String name;
     @Column(name = "user_userName")
-    private String userName;
+    private String lastName;
     @Column(name = "user_email")
     private String email;
     @Column(name = "user_direccion")
     private String address;
     @Column(name = "user_tel")
     private String phone;
-    @Column(name = "user_tipo")
-    private String type;
+    @Column(name = "rol")
+    private String rol;
     @Column(name = "user_password")
     private String password;
     @OneToMany(mappedBy = "usuario")
@@ -32,20 +32,19 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String email, String password){
-        this.userName = userName;
+    public User(String email, String password){
         this.email = email;
         this.password = password;
     }
 
-    public User(Long id, String name, String userName, String email, String address, String phone, String type, String password, List<Orden> checks) {
+    public User(Long id, String name, String lastName, String email, String address, String phone, String rol, String password, List<Orden> checks) {
         this.id = id;
         this.name = name;
-        this.userName = userName;
+        this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.phone = phone;
-        this.type = type;
+        this.rol = rol;
         this.password = password;
         this.checks = checks;
     }

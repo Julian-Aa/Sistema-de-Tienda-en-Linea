@@ -14,9 +14,11 @@ public class ProveedorService {
     @Autowired
     private ProveedorRepository proveedorRepository;
 
-    public List<Proveedor> findAll() { return proveedorRepository.findAll();}
+    public List<Proveedor> findAll() {
+        return proveedorRepository.findAll();
+    }
 
-    public Proveedor finBy(Long id) {
+    public Proveedor finById(Long id) {
         return proveedorRepository.findById(id).orElse(null);
     }
 
@@ -24,7 +26,10 @@ public class ProveedorService {
         return proveedorRepository.save(proveedor);
     }
 
-    public void dele(Long id) {
+    public void deleteById(Long id) {
         proveedorRepository.deleteById(id);
+    }
+    public boolean existsProveedorByEmail(String email){
+        return  proveedorRepository.existsProveedorByEmail(email);
     }
 }

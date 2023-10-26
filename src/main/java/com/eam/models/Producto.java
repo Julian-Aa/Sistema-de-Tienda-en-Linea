@@ -29,4 +29,68 @@ public class Producto {
     private Proveedor proveedor;
     public Producto() {
     }
+
+    public Long getProductoId() {
+        return productoId;
+    }
+
+    public void setProductoId(Long productoId) {
+        this.productoId = productoId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Categoria getCategory() {
+        return category;
+    }
+
+    public void setCategory(Categoria category) {
+        this.category = category;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
+    }
 }

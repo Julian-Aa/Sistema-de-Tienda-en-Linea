@@ -1,10 +1,9 @@
 package com.eam.repository;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.eam.models.Categoria;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+@Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 }

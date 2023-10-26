@@ -3,6 +3,7 @@ package com.eam.controller;
 import com.eam.models.Proveedor;
 import com.eam.models.User;
 import com.eam.repository.ProveedorRepository;
+import com.eam.service.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +15,16 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProveedorController {
     @Autowired
-    private ProveedorRepository proveedorRepository;
+    private ProveedorService proveedorService;
 
     @GetMapping
     public ResponseEntity<List<Proveedor>> show() {
-        return ResponseEntity.ok(proveedorRepository.findAll());
+        return ResponseEntity.ok(proveedorService.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Proveedor> getById(@PathVariable Long id) {
-        Proveedor proveedor = proveedorRepository.getById(id);
+        Proveedor proveedor = proveedorService.finById(id);
         if (proveedor != null) {
             return ResponseEntity.ok(proveedor);
         } else {
@@ -33,23 +34,22 @@ public class ProveedorController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Proveedor proveedor) {
-        if (proveedorRepository.existsByEmail(proveedor.getEmail())) {
+        if (proveedorService.existsProveedorByEmail(proveedor.getEmail())) {
             return ResponseEntity.badRequest().body("El correo electrónico ya existe.");
         } else {
-            Proveedor createdProveedor = proveedorRepository.save(proveedor);
+            Proveedor createdProveedor = proveedorService.save(proveedor);
             return ResponseEntity.ok(createdProveedor);
         }
     }
     @PutMapping("/{id}")
-
     public Proveedor update(@PathVariable Long id, @RequestBody Proveedor proveedor) {
         proveedor.setIdProveedor(id);
-        return proveedorRepository.save(proveedor);
+        return proveedorService.save(proveedor);
     }
 
-    @DeleteMapping("/{categoriaId}")
-    public ResponseEntity<String> delete(@PathVariable Long proveedorId) {
-        proveedorRepository.deleteById(proveedorId);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        proveedorService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 }

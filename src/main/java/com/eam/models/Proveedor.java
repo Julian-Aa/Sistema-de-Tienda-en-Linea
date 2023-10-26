@@ -1,5 +1,7 @@
 package com.eam.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,7 +11,7 @@ public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "prove_id")
-    private long idProveedor;
+    private Long idProveedor;
     @Column(name = "proveedor_name")
     private String name;
     @Column(name = "proveedor_address")
@@ -21,11 +23,11 @@ public class Proveedor {
     public Proveedor() {
     }
 
-    public long getIdProveedor() {
+    public Long getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(long idProveedor) {
+    public void setIdProveedor(Long idProveedor) {
         this.idProveedor = idProveedor;
     }
 
