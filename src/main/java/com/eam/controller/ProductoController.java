@@ -71,6 +71,9 @@ public class ProductoController {
     @PutMapping("/{id}")
     public Producto update(@PathVariable Long id, @RequestBody Producto producto) {
         producto.setProductoId(id);
+        if(imagen != "") {
+            producto.setImage(imagen);
+        }
         return productoService.save(producto);
     }
 

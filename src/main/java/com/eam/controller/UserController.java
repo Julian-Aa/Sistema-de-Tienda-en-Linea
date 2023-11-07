@@ -30,6 +30,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PostMapping("/login")
     public ResponseEntity<User> getUsuario(@RequestBody User usuario) {
         User usu = userService.login(usuario.getEmail(), usuario.getPassword());
@@ -39,6 +40,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {
         if (userService.existsByEmail(user.getEmail())) {
@@ -50,10 +52,20 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable Long id, @RequestBody User usuario) {
-        usuario.setId(id);
-        return userService.save(usuario);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody User usuario) {
+        User existingUser = userService.findById(id);
+        if (existingUser == null) {
+            return ResponseEntity.notFound().build();
+        }
+        if (!existingUser.getEmail().equals(usuario.getEmail()) && userService.existsByEmail(usuario.getEmail())) {
+            return ResponseEntity.badRequest().body("El correo electrónico ya existe.");
+        } else {
+            usuario.setId(id);
+            User updatedUser = userService.save(usuario);
+            return ResponseEntity.ok(updatedUser);
+        }
     }
+
 
     @DeleteMapping("/{usuarioId}")
     public ResponseEntity<String> delete(@PathVariable Long id) {

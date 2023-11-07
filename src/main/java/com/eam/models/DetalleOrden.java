@@ -2,10 +2,8 @@ package com.eam.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-
 @Data
-@Entity()
+@Entity
 @Table(name = "detalles")
 public class DetalleOrden {
     @Id
